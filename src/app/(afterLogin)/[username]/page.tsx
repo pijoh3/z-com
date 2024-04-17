@@ -1,3 +1,3 @@
 export default function Page() {
-  return <></>;
+  return <main>프로필페이지</main>;
 }
