@@ -70,10 +70,6 @@
   text-decoration: underline;
 }
 
-.postImageSection {
-
-}
-
 .postBody {
   display: flex;
   flex-direction: column;
