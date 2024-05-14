@@ -7,13 +7,15 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "mock":"npx tsx watch ./src/mocks/http.ts"
+    "mock": "npx tsx watch ./src/mocks/http.ts"
   },
   "dependencies": {
+    "@auth/core": "^0.31.0",
     "@faker-js/faker": "^8.4.1",
     "classnames": "^2.5.1",
     "dayjs": "^1.11.11",
     "next": "14.1.4",
+    "next-auth": "^4.24.7",
     "nvm": "^0.0.4",
     "react": "^18",
     "react-dom": "^18"
