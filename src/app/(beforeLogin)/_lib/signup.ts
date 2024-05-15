@@ -13,7 +13,7 @@ const onSubmit = async (prevState: any, formData: FormData) => {
     !(formData.get("password") as string)?.trim()
   )
     return { message: "no_password" };
-  if (!formData.get("image") || !(formData.get("image") as string)?.trim())
+  if (!formData.get("image"))
     return { message: "no_image" };
 
   let shouldRedirect = false;

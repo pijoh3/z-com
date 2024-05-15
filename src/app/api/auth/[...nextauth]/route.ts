@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
+import { NextResponse } from "next/server";
 
 const handler = NextAuth({
   pages: {
@@ -30,9 +31,9 @@ const handler = NextAuth({
         if (!authResponse.ok) return null;
 
         const user = await authResponse.json();
-
+        console.log("user", user);
         return {
-          id: user.id,
+          email: user.id,
           name: user.nickname,
           image: user.image,
           ...user,

@@ -8,6 +8,7 @@ export default function LogoutButton() {
   const router = useRouter();
 
   const { data: me } = useSession();
+  console.log("me", me);
 
   const onLogout = () =>
     signOut({ redirect: false }).then(() => router.replace("/"));
@@ -17,11 +18,11 @@ export default function LogoutButton() {
   return (
     <button className={style.logOutButton} onClick={onLogout}>
       <div className={style.logOutUserImage}>
-        <img src={me.user?.image!} alt={me.user?.id} />
+        <img src={me.user?.image!} alt={me.user?.email as string} />
       </div>
       <div className={style.logOutUserName}>
         <div>{me.user?.name}</div>
-        <div>@{me.user?.id}</div>
+        <div>@{me.user?.email}</div>
       </div>
     </button>
   );
