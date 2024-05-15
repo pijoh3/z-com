@@ -4,8 +4,9 @@ import Credentials from "next-auth/providers/credentials";
 const handler = NextAuth({
   pages: {
     signIn: "/i/flow/login",
-    newUser: "/i/flow/signup"
+    newUser: "/i/flow/signup",
   },
+  secret: process.env.NEXTAUTH_SECRET,
   providers: [
     Credentials({
       // You can specify which fields should be submitted, by adding keys to the `credentials` object.
@@ -16,7 +17,7 @@ const handler = NextAuth({
       },
       authorize: async (credentials) => {
         const authResponse = await fetch(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/api/login`,
+          `${process.env.NEXTAUTH_URL}/api/login`,
           {
             method: "POST",
             headers: {
@@ -30,10 +31,17 @@ const handler = NextAuth({
 
         const user = await authResponse.json();
 
-        return user;
+        return {
+          id: user.id,
+          name: user.nickname,
+          image: user.image,
+          ...user,
+        };
       },
     }),
   ],
 });
+
+console.log(handler.signIn, handler.auth);
 
 export { handler as GET, handler as POST };

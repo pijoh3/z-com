@@ -1,5 +1,6 @@
 "use server";
 
+import { signIn } from "next-auth/react";
 import { redirect } from "next/navigation";
 
 const onSubmit = async (prevState: any, formData: FormData) => {
@@ -30,6 +31,11 @@ const onSubmit = async (prevState: any, formData: FormData) => {
     if (response.status === 403) return { message: "user_exists" };
     console.log(await response.json());
     shouldRedirect = true;
+    await signIn("credentials", {
+      id: formData.get("id"),
+      password: formData.get("password"),
+      redirect: false,
+    });
   } catch (error) {
     console.error(error);
   }
