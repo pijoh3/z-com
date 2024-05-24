@@ -10,7 +10,6 @@ import dynamic from "next/dynamic";
 
 type Props = { params: { id: string } };
 export default async function Default({ params }: Props) {
-  
   const ImageZone = dynamic(
     () =>
       import(
@@ -68,7 +67,7 @@ export default async function Default({ params }: Props) {
 
         <div className={style.commentZone}>
           <SinglePost id={id} noImage />
-          <CommentForm />
+          <CommentForm id={id} />
           <Comments id={id} />
         </div>
       </HydrationBoundary>
