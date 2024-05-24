@@ -12,7 +12,7 @@ function generateDate() {
 
 const User = [
   { id: "elonmusk", nickname: "Elon Musk", image: "/yRsRRjGO.jpg" },
-  { id: "zerohch0", nickname: "제로초", image: "/5Udwvqim.jpg" },
+  { id: "zeroch0", nickname: "제로초", image: "/5Udwvqim.jpg" },
   { id: "leoturtle", nickname: "레오", image: faker.image.avatar() },
 ];
 
@@ -258,7 +258,10 @@ export const handlers = [
   }),
   http.get("api/users/:userId", ({ request, params }) => {
     const { userId } = params;
-    return HttpResponse.json(User[1]);
+    const found = User.find((v) => v.id === userId);
+
+    if (found) return HttpResponse.json(found);
+    return HttpResponse.json({ message: "no_such_user" }, { status: 404 });
   }),
   http.get("/api/users/:userId/posts/:postId", ({ request, params }) => {
     const { userId, postId } = params;
