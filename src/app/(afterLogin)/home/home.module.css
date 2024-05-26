@@ -9,13 +9,29 @@
   flex-direction: column;
   align-items: stretch;
 }
+
 @media all and (min-width: 687px) {
   .main {
-      width: 600px;
+    width: 600px;
   }
 }
+
 @media (prefers-color-scheme: dark) {
   .main {
-      border-color: rgb(47, 51, 54);
+    border-color: rgb(47, 51, 54);
   }
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loader {
+  animation: rotating 2s linear infinite;
 }

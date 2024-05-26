@@ -10,6 +10,8 @@ function generateDate() {
   });
 }
 
+const delay = (ms: number) => new Promise((res, rej) => setTimeout(res, ms));
+
 const User = [
   { id: "elonmusk", nickname: "Elon Musk", image: "/yRsRRjGO.jpg" },
   { id: "zeroch0", nickname: "제로초", image: "/5Udwvqim.jpg" },
@@ -42,7 +44,9 @@ export const handlers = [
       },
     });
   }),
-  http.get("/api/postRecommends", ({ request }) => {
+  http.get("/api/postRecommends", async ({ request }) => {
+    await delay(3000);
+
     const url = new URL(request.url);
     const cursor = parseInt(url.searchParams.get("cursor") as string) || 0;
 
@@ -96,7 +100,9 @@ export const handlers = [
       },
     ]);
   }),
-  http.get("/api/followingPosts", ({ request }) => {
+  http.get("/api/followingPosts", async ({ request }) => {
+    await delay(3000);
+
     return HttpResponse.json([
       {
         postId: 1,
