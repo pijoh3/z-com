@@ -6,13 +6,15 @@ import TabDecider from "@/app/(afterLogin)/home/_component/TabDecider";
 import { Suspense } from "react";
 import Loading from "@/app/(afterLogin)/home/loading";
 import TabDeciderSuspense from "@/app/(afterLogin)/home/_component/TabDeciderSuspnse";
+import { getServerSession } from "next-auth";
 
 export default async function Page() {
+  const session = await getServerSession()
   return (
     <main className={style.main}>
       <TabProvider>
         <Tab />
-        <PostForm />
+        <PostForm me={session}/>
         <Suspense fallback={<Loading />}>
           <TabDecider />
           <TabDeciderSuspense />
